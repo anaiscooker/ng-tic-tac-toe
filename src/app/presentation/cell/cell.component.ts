@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { GameService, Cell } from '../../game.service';
 
 @Component({
   selector: 'cell',

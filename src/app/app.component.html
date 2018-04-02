@@ -2,8 +2,22 @@
   <div class="main-app">
     <div class="panel">
       <h1>Homemade TicTacToe</h1>
+      <pre class="form">
+        <input id="name" placeholder="Quel est votre nom?" #name (keyup.enter)="initPlayers(name.value)"/>
+      </pre>
+      <!--players-->
+      <div *ngFor="let player of players" class="row">
+        <div class="players">{{player.name}} | {{player.score}}</div>
+      </div>
+      <!--board-->
+      <div class="gameStatus" >
+          {{gameStatusMessage}}
+      </div>
+      <div class="board" *ngFor="let row of [0,1,2]">
+          <cell class="cell" *ngFor="let col of [0,1,2]" [state]="this.board.squares[col+row*3]" (click)="handleMove(col+row*3)"></cell>
+          </div>
+      <button class="restart" (click)="newBoard()">Nouvelle Partie</button>
     </div>
-    <board></board>
   </div>
 </div>
 
