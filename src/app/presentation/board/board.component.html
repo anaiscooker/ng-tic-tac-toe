@@ -1,0 +1,9 @@
+<div>
+    <div class="gameStatus" >
+        {{gameStatusMessage}}
+    </div>
+    <div class="board" *ngFor="let row of [0,1,2]">
+        <cell class="cell" *ngFor="let col of [0,1,2]" [state]="this.board.squares[col+row*3]" (click)="handleMove(col+row*3)"></cell>
+        </div>
+    <button class="restart" (click)="newBoard()">Nouvelle Partie</button>
+</div>

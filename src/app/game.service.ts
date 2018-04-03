@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import {BoardComponent} from './presentation/board/board.component';
 
 @Injectable()
 export class GameService {
@@ -32,26 +31,6 @@ export class GameService {
         });
         return this.board;
     }
-
-    gameStatusMessage():string{
-    if(this.board.counter == 9 && !this.board.winner){
-        return `Pas de perdant, que des gagnants`;
-    }
-    return this.board.winner? `${this.board.winner} a gagné!` : 
-    `${this.board.currentPlayer.name}, à toi de jouer`;
-    }
-
-    handleMove(position) {
-    if(!this.board.winner && !this.board.squares[position] ){
-        this.board.squares[position] = this.board.currentPlayer.pawn;
-        if(this.winningMove()) {
-            this.board.winner = this.board.currentPlayer.name;
-            this.updateScore(1);
-        }
-            this.changeTurn();
-            this.board.counter++;
-        }
-    }
     
     changeTurn(){
         if(this.board.currentPlayer.pawn == "O"){
@@ -61,24 +40,12 @@ export class GameService {
         }
     }
 
-    winningMove() {
-    const conditions = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-    for (let condition of conditions) {
-        if ( this.board.squares[condition[0]]
-            && this.board.squares[condition[0]] === this.board.squares[condition[1]]
-            && this.board.squares[condition[1]] === this.board.squares[condition[2]]) {
-                return true;
-        }
-    }
-    return false;
-    }
-
     updateScore(point: number){
         this.board.currentPlayer.score +=point;
+    }
+
+    getBoard(){
+        return this.board;
     }
 }
 

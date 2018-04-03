@@ -5,14 +5,17 @@ import { GameService, Player, Board, Cell } from './game.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [GameService]
 })
 export class AppComponent {
   title = 'Morpion';
   players: Player[] = [];
   board: Board;
 
-  constructor(public gs: GameService, ){
+  constructor(public gs: GameService){
+  }
+
+  ngOnInit(){
+    this.board = this.gs.getBoard();
   }
 
   initPlayers(name: string){
@@ -20,19 +23,7 @@ export class AppComponent {
     this.players = this.gs.players;
     console.log("joueurs créés", this.players);
     this.board = this.gs.initBoard();
-    console.log(this.board);
+    console.log("board créée", this.board);
   }
 
-  newBoard(){
-    this.board = this.gs.initBoard();
-    console.log(this.board);
-  }
-
-get gameStatusMessage():string{
-    return this.gs.gameStatusMessage();
-  }
-
-  handleMove(position){
-    this.gs.handleMove(position);
-  }
 }

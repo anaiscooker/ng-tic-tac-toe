@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './presentation/board/board.component';
 import { CellComponent } from './presentation/cell/cell.component';
 import { PlayerComponent } from './presentation/player/player.component';
+import { GameService } from './game.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { PlayerComponent } from './presentation/player/player.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
